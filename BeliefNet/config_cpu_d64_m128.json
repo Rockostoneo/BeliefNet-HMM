@@ -1,0 +1,38 @@
+{
+    "model_parent_folder": "Model_m128/",
+    "data_file": "../prepare_data/data_d64_m128_lamda0.9_example.h5",
+    "d": 64,
+    "context": 256,
+    "stride": 256,
+
+    "batchsize": 10,
+    "max_iters": 2000,
+    "eval_interval": 50,
+    "lr": 0.1,
+    "dropout": 0.1,
+
+    "mode": "visual",
+    "device": "cpu",
+       
+    "start_text": "The",
+    "temp": 0.8,
+    "topk": 200,
+    "max_new_tokens": 200, 
+    "block": "full_matrix",
+    "initblock": "normal_distribution",
+    "fulltoken": false,
+    "layer": 1,
+    "splitratio": 1,
+    "epoch": null,
+    "iterflag": true,
+    "saveflag": true,
+    "cross": null,
+    "lb": null,
+    "ub": null,
+    "targetlist": null,
+    "checkpoint": null,
+    "verbose": false,
+    "debug": false,
+    "model_folder_name": null,
+    "training_temp": false
+}

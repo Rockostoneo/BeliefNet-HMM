@@ -1,0 +1,38 @@
+# train a miniature character-level shakespeare model
+# good for debugging and playing on macbooks and such
+lamda = 0.9 #custom added
+
+out_dir = 'm32_d64_1l1h' # model output directory
+eval_interval = 50 # keep frequent because we'll overfit
+eval_iters = 20
+log_interval = 50 # don't print too too often
+
+# we expect to overfit on this small dataset, so only save when val improves
+always_save_checkpoint = False
+
+wandb_log = False # override via command line if you like
+wandb_project = 'testrun'
+wandb_run_name = 'mini-gpt'
+
+data_file_path = '../prepare_data/data_d64_m32_lamda0.9_example.h5'
+gradient_accumulation_steps = 1
+batch_size = 10
+block_size = 256 # context of up to 256 previous characters
+
+# baby GPT model :)
+n_layer = 1  #
+n_head = 1   #
+n_embd = 64
+dropout = 0  #
+
+learning_rate = 1e-3 # with baby networks can afford to go a bit higher
+max_iters = 2000
+lr_decay_iters = 2000 # make equal to max_iters usually
+min_lr = learning_rate/10 # learning_rate / 10 usually
+beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
+
+warmup_iters = 0 # not super necessary potentially
+
+# on macbook also add
+device = 'cpu'  # run on cpu only
+compile = False # do not torch compile the model
