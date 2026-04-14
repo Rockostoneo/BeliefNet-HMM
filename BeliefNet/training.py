@@ -3,9 +3,8 @@ from typing import Any, Callable, Dict, cast
 import torch._dynamo
 torch._dynamo.config.suppress_errors = True
 
-#import os
+import os
 import time
-#import urllib.request
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -48,14 +47,12 @@ def reconstruct_loaders_from_hdf5(data_file,
     Returns:
         train_loader, eval_loader: Reconstructed PyTorch DataLoaders
     """
-    
-    f = h5py.File(data_file, 'r')
-    train_inputs_tensor = torch.tensor(f['z_train'][:,:-1])
-    train_targets_tensor = torch.tensor(f['z_train'][:,1:])
-    eval_inputs_tensor = torch.tensor(f['z_validation'][:,:-1])
-    eval_targets_tensor = torch.tensor(f['z_validation'][:,1:])
-    
-    f.close()
+    with h5py.File(data_file, 'r') as f:
+        train_inputs_tensor = torch.tensor(f['z_train'][:,:-1]).unsqueeze(1)
+        train_targets_tensor = torch.tensor(f['z_train'][:,1:]).unsqueeze(1)
+        eval_inputs_tensor = torch.tensor(f['z_validation'][:,:-1]).unsqueeze(1)
+        eval_targets_tensor = torch.tensor(f['z_validation'][:,1:]).unsqueeze(1)
+        
     # Create TensorDatasets
     train_dataset = TensorDataset(train_inputs_tensor, train_targets_tensor)
     eval_dataset = TensorDataset(eval_inputs_tensor, eval_targets_tensor)
@@ -190,8 +187,8 @@ def get_matricies(
         C = learning_filter.emission.matrix.cpu().detach().numpy()
         pi = learning_filter.transition.initial_state.cpu().detach().numpy()
     
-    
-    f = h5py.File(matrix_filename, 'a')
+    matrix_filepath = os.path.join(model_folder_path, matrix_filename)
+    f = h5py.File(matrix_filepath, 'a')
     f.create_dataset('A', data=A)
     f.create_dataset('C', data=C)
     f.create_dataset('pi', data=pi)

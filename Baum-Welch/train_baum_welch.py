@@ -5,7 +5,7 @@ import sys
 sys.stderr.flush()
 
 def save_model(model, train_loss, eval_loss, idx, params):
-    filename = f"bw_d{params['d']}_m{params['m']}_lamda{params['lamda']}_iters{params['n_iter']}_fit{idx}.h5"
+    filename = f"bw_d{params['d']}_m{params['m']}_lamda{params['lamda']}_iters{params['n_iter']}_fit{idx+1}.h5"
     with h5.File(filename, 'x') as file:
         file.create_dataset('A', data=model.transmat_)
         file.create_dataset('C', data=model.emissionprob_)
@@ -62,7 +62,7 @@ def train_hmm_models(training_set, validation_set, params, seed_offset, n_iter, 
 
 if __name__ == '__main__':
     d = 64  # number of hidden states
-    n_fits = 1 # number of fits with different initializations
+    n_fits = 5 # number of fits with different initializations
     n_iter = 20  # number of iterations for each fit
     seed_offset = 123
     #A, C, pi, d = get_pretrained_parameters('hmm_learned_matricies.h5') #if starting from pretrained matricies, otherwise will be randomly initialized by hmmlearn

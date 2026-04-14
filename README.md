@@ -65,7 +65,7 @@ python training.py config_cpu_d64_m32.json --mode visual
 python training.py config_cpu_d64_m32.json --mode get_matricies 
 ```
 
-6. Evalute the trained model over entire/new dataset (losses during training are only calculated over a single batch). First edit the `evaluate.py` file settings then run.
+6. Evalute the trained model over entire/new dataset (losses during training are only calculated over a single batch). First edit the `if __name__ == '__main__':` section in the `evaluate.py` file then run.
 ```
 python evaluate.py
 ```

@@ -1,6 +1,6 @@
 {
     "model_parent_folder": "Model/",
-    "data_file": "prepare_data/data_fedchar.h5",
+    "data_file": "../prepare_data/data_fedchar_example.h5",
     "d": 64,
     "context": 256,
     "stride": 256,

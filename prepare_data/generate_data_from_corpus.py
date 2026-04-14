@@ -5,7 +5,7 @@ import h5py as h5
 L = 256 #length of each sample
 data_seed = 4223432  #used to generate the sequences and split the data
 filename = f"data_fedchar.h5"
-train_ratio = 0.8  #% of the data for training
+train_ratio = 0.8  #proportion of the data for training split
 validation_ratio = 0.1
 test_ratio = 0.1
 corpus_path = 'federalist_papers_singlebreak.txt'

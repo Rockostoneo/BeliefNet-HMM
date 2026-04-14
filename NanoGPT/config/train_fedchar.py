@@ -2,7 +2,7 @@
 # good for debugging and playing on macbooks and such
 lamda = 1.0 #custom added
 
-out_dir = 'fedchar_m82_1l1ha' # model output directory
+out_dir = 'fedchar_m82_1l1h' # model output directory
 eval_interval = 50 # keep frequent because we'll overfit
 eval_iters = 20
 log_interval = 50 # don't print too too often
@@ -14,7 +14,7 @@ wandb_log = False # override via command line if you like
 wandb_project = 'testrun'
 wandb_run_name = 'mini-gpt'
 
-data_file_path = '../prepare_data/data_fedchar.h5'
+data_file_path = '../prepare_data/data_fedchar_example.h5'
 gradient_accumulation_steps = 1
 batch_size = 10
 block_size = 256 # context of up to 256 previous characters
@@ -23,7 +23,7 @@ block_size = 256 # context of up to 256 previous characters
 n_layer = 1  #
 n_head = 1   #
 n_embd = 64
-dropout = 0.00 #
+dropout = 0.0 #
 
 learning_rate = 1e-2 # with baby networks can afford to go a bit higher
 max_iters = 4000

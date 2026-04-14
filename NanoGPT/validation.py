@@ -11,8 +11,8 @@ ptdtype = torch.bfloat16
 ctx = nullcontext() 
 
 #Edit these to point to the right files and directories for your setup
-data_file_path = '../prepare_data/data_d64_m32_alpha1_test1.h5'
-out_dir = 'lamda1_d64_m32_44'
+data_file_path = '../prepare_data/data_d64_m32_lamda0.9_example.h5'
+out_dir = 'm32_d64_1l1h_example'
 split = 'test' # 'train' or 'validation' or 'test'
 
 # model

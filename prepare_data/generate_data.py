@@ -4,7 +4,7 @@ from generate_data_utils import generate_base_matricies, data_from_matricies
 #HMM parameters
 lamda = 0.9 # A = lamda * A_circle + (1-lamda) * A_noise, controls how much noise is added to the cyclic transition matrix
 d = 64 #hidden state dimension
-m = 128 #observation dimension
+m = 32 #observation dimension
 matrix_seed = 34534
 Atemp = 0.1
 Ctemp = 0.01
