@@ -27,7 +27,7 @@ git lfs pull
 ```
 python -m venv .venv
 ```
-4. Activate venv
+4. Activate venv (for windows, mac and linux are slightly different)
 
 PowerShell:
 ```
@@ -132,10 +132,11 @@ python eval_baum_welch.py
 # Citation
 We ask that any publications which use `BeliefNet-HMM` cite as follows:
 ```
-@article{chen2025belief,
+@inproceedings{
+  chen2026belief,
   title={Belief Net: A Filter-Based Framework for Learning Hidden Markov Models from Observations},
-  author={Chen, Reginald Zhiyan and Chang, Heng-Sheng and Mehta, Prashant G},
-  journal={arXiv preprint arXiv:2511.10571},
-  year={2025}
+  author={Reginald Zhiyan Chen and Heng-Sheng Chang and Prashant G Mehta},
+  booktitle={8th Annual Learning for Dynamics and Control Conference},
+  year={2026},
 }
 ```
