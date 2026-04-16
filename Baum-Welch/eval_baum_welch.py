@@ -24,14 +24,20 @@ def load_model(model_file: Path) -> hmm.CategoricalHMM:
 def evaluate(model_file: Path, validation_set) -> None:
 	model = load_model(model_file)
 
-	token_nll = -model.score(validation_set) / validation_set.size
-	print(f"Validation loss (token NLL) : {token_nll:.3f}")
-	print(f"Validation set shape: {validation_set.shape}")
+	X = validation_set.flatten()
+	lengths = [validation_set.shape[1]] * validation_set.shape[0]
+
+	loss = -model.score(X.reshape(-1,1), lengths) / X.size
+	print(f"Validation loss (token NLL) : {loss:.3f}")
 
 if __name__ == "__main__":
 	data_file_path = Path(__file__).resolve().parent / "../prepare_data/data_d64_m32_lamda0.9_example.h5"
-	model_param_path = Path(__file__).resolve().parent / "bw_d64_m32_lamda0.9_iters20_fit1_example.h5"
+	model_param_path = Path(__file__).resolve().parent / "bw_d64_m32_lamda0.9_iters20_fit1_example.h5" # edit this to the model you want to evaluate
+	split = "validation" # "train", "validation", or "test"
+	print(f"Split: {split}")
+	
 	with h5.File(data_file_path, "r") as f:
 		params = eval(f["params"][()])
-		validation_set = f["z_validation"][:] # z_train, z_validation, or z_test
+		validation_set = f[f"z_{split}"][:]
+
 	evaluate(model_param_path, validation_set)

@@ -42,23 +42,29 @@ def train_hmm_models(training_set, validation_set, params, seed_offset, n_iter, 
                 n_components=d, random_state=idx+seed_offset,
                 init_params='ste',verbose = True, n_iter=n_iter)
 
-        model.fit(training_set)
+        X = training_set.flatten()
+        Y = validation_set.flatten()
+        x_lengths = [training_set.shape[1]] * training_set.shape[0]
+        y_lengths = [validation_set.shape[1]] * validation_set.shape[0]
+        
+        model.fit(X.reshape(-1,1), x_lengths)
         fit_end = time.time()
-        train_loss = -model.score(training_set)/ training_set.size
-        eval_loss = -model.score(validation_set)/ validation_set.size
         
-        # Store all models and scores
-        save_model(model, train_loss, eval_loss, idx, params)
-        
+        train_loss = -model.score(X.reshape(-1,1), x_lengths) / X.size
+        eval_loss = -model.score(Y.reshape(-1,1), y_lengths) / Y.size
+
         print(
             f'Model #{idx}\ttrain_loss: {train_loss:.4f}\teval_loss: {eval_loss:.6f}'
             f'\tTime: {fit_end - fit_start:.2f}s'
         )
 
+        # Store all models and scores
+        save_model(model, train_loss, eval_loss, idx, params)
+
     end_time = time.time()
     total_time = end_time - start_time
     print(f'Total training time: {total_time:.2f} seconds')
-    print(f'Average time per model: {total_time/n_fits:.2f} seconds')    
+    print(f'Average time per model: {total_time/n_fits:.2f} seconds')   
 
 if __name__ == '__main__':
     d = 64  # number of hidden states
