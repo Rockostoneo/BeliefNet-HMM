@@ -144,8 +144,8 @@ The steps will be:
 We ask that any publications which use `Belief Net - HMM` cite as follows:
 ```
 @inproceedings{
-  chen2026belief,
-  title={Belief Net: A Filter-Based Framework for Learning Hidden Markov Models from Observations},
+  chen2026differentiable,
+  title={Differentiable Filtering for Learning Hidden Markov Models},
   author={Reginald Zhiyan Chen and Heng-Sheng Chang and Prashant G Mehta},
   booktitle={8th Annual Learning for Dynamics and Control Conference},
   year={2026},
