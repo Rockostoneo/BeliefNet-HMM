@@ -143,8 +143,7 @@ The steps will be:
 ## Citation
 We ask that any publications which use `Belief Net - HMM` cite as follows:
 ```
-@inproceedings{
-  chen2026differentiable,
+@inproceedings{chen2026differentiable,
   title={Differentiable Filtering for Learning Hidden Markov Models},
   author={Reginald Zhiyan Chen and Heng-Sheng Chang and Prashant G Mehta},
   booktitle={8th Annual Learning for Dynamics and Control Conference},
